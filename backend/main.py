@@ -1,6 +1,11 @@
 from fastapi import FastAPI
 
+from . import models
 from .candidates import router as candidate_router
+from .database import Base, engine
+
+
+Base.metadata.create_all(bind=engine)
 
 
 app = FastAPI(

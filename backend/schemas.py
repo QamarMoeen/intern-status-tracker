@@ -1,5 +1,5 @@
 from pydantic import BaseModel, EmailStr, Field
-from datetime import date
+from datetime import datetime
 
 
 class CandidateCreate(BaseModel):
@@ -22,4 +22,8 @@ class CandidateResponse(BaseModel):
     email: str
     training_track: str
     is_active: bool
-    created_at: date
+    created_at: datetime
+
+    class Config:
+        # Pydantic v2 (Most likely what you are using)
+        from_attributes = True  

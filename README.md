@@ -10,6 +10,21 @@ Day 1:
 - Candidate CRUD API
 - Swagger API documentation
 
+Day 2:
+Technologies
+- Python
+- FastAPI
+- Pydantic
+- SQLAlchemy
+- PostgreSQL
+
+Current Progress
+- FastAPI backend
+- Pydantic validation
+- Candidate CRUD
+- PostgreSQL database
+- SQLAlchemy integration
+
 ## Running the Backend
 
 Create and activate a virtual environment:
