@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Intern Status Tracker</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <h1>Intern Status Tracker</h1>
+</header>
+
+<main>
+
+    <section id="dashboard">
+
+        <h2>Dashboard</h2>
+
+        <div class="dashboard-date">
+
+            <label for="dashboard-date">
+                Select Date:
+            </label>
+
+            <input
+                type="date"
+                id="dashboard-date"
+            >
+
+            <button id="dashboard-load">
+                Load Dashboard
+            </button>
+
+        </div>
+
+        <div id="dashboard-message"></div>
+
+        <div class="dashboard-cards">
+
+            <div class="card">
+                <h3>Active Candidates</h3>
+                <p id="total-active">0</p>
+            </div>
+
+            <div class="card">
+                <h3>Submitted</h3>
+                <p id="submitted-today">0</p>
+            </div>
+
+            <div class="card">
+                <h3>Missing</h3>
+                <p id="missing-today">0</p>
+            </div>
+
+            <div class="card">
+                <h3>Average Completion</h3>
+                <p id="average-completion">0%</p>
+            </div>
+
+        </div>
+
+
+        <div class="dashboard-section">
+
+            <h3>Missing Candidates</h3>
+
+            <ul id="missing-candidates"></ul>
+
+        </div>
+
+
+        <div class="dashboard-section">
+
+            <h3>Latest Status / Progress</h3>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Candidate</th>
+                        <th>Latest Status Date</th>
+                        <th>Completion</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="latest-status-table-body"></tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <section id="candidates-section">
+
+        <h2>Candidates</h2>
+
+        <form id="candidate-form">
+
+            <input
+                type="hidden"
+                id="candidate-id"
+            >
+
+            <input
+                type="text"
+                id="candidate-name"
+                placeholder="Full name"
+                required
+            >
+
+            <input
+                type="email"
+                id="candidate-email"
+                placeholder="Email"
+                required
+            >
+
+            <input
+                type="text"
+                id="training-track"
+                placeholder="Training track"
+                required
+            >
+
+            <div class="form-group">
+                <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                    <input type="checkbox" id="edit-candidate-active" style="width: auto;">
+                    <span>Active</span>
+                </label>
+            </div>
+
+            <button type="submit">
+                Save Candidate
+            </button>
+
+            <button
+                type="button"
+                id="cancel-edit"
+            >
+                Cancel
+            </button>
+
+        </form>
+
+        <div id="candidate-message"></div>
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Track</th>
+                    <th>Active</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody id="candidate-table-body"></tbody>
+
+        </table>
+
+    </section>
+
+
+    <section id="status-section">
+
+        <h2>Submit Daily Status</h2>
+
+        <form id="status-form">
+
+            <input type="hidden" id="status-id" value="">
+
+            <select id="status-candidate" required>
+                <option value="">Select Candidate</option>
+            </select>
+
+            <input
+                type="date"
+                id="status-date"
+                required
+            >
+
+            <textarea
+                id="work-completed"
+                placeholder="Work completed"
+                required
+            ></textarea>
+
+            <textarea
+                id="topics-learned"
+                placeholder="Topics learned"
+                required
+            ></textarea>
+
+            <textarea
+                id="blockers"
+                placeholder="Blockers"
+            ></textarea>
+
+            <textarea
+                id="next-day-plan"
+                placeholder="Next-day plan"
+                required
+            ></textarea>
+
+            <input
+                type="number"
+                id="completion-percentage"
+                min="0"
+                max="100"
+                placeholder="Completion %"
+                required
+            >
+
+            <button type="submit">
+                Submit Status
+            </button>
+
+        </form>
+
+        <div id="status-message"></div>
+
+    </section>
+
+
+    <section id="status-history">
+
+        <h2>Status History</h2>
+
+        <div class="status-filters">
+
+            <div>
+                <label for="status-candidate-filter">
+                    Candidate:
+                </label>
+
+                <select id="status-candidate-filter">
+                    <option value="">All Candidates</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="status-date-filter">
+                    Specific Date:
+                </label>
+
+                <input
+                    type="date"
+                    id="status-date-filter"
+                >
+            </div>
+
+            <div>
+                <label for="status-date-from">
+                    From:
+                </label>
+
+                <input
+                    type="date"
+                    id="status-date-from"
+                >
+            </div>
+
+            <div>
+                <label for="status-date-to">
+                    To:
+                </label>
+
+                <input
+                    type="date"
+                    id="status-date-to"
+                >
+            </div>
+
+            <button id="status-filter-button">
+                Filter
+            </button>
+
+            <button id="status-clear-filter-button">
+                Clear
+            </button>
+
+        </div>
+
+        <div id="status-history-message"></div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Candidate</th>
+                    <th>Date</th>
+                    <th>Work Completed</th>
+                    <th>Topics Learned</th>
+                    <th>Blockers</th>
+                    <th>Next Day Plan</th>
+                    <th>Completion</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody id="status-history-table-body"></tbody>
+        </table>
+
+    </section>
+
+    <!-- Status Edit Modal -->
+    <div id="status-edit-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Edit Daily Status</h3>
+                <button class="close-modal-btn" onclick="closeEditModal()">&times;</button>
+            </div>
+            
+            <form id="status-edit-form">
+                <!-- Hidden field to keep track of which status we are updating -->
+                <input type="hidden" id="edit-status-id">
+
+                <div class="form-group">
+                    <label for="edit-status-candidate">Candidate</label>
+                    <select id="edit-status-candidate" required>
+                        <!-- JavaScript will dynamically clone options here -->
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="edit-status-date">Date</label>
+                    <input type="date" id="edit-status-date" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="edit-work-completed">Work Completed</label>
+                    <textarea id="edit-work-completed" rows="3" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="edit-topics-learned">Topics Learned</label>
+                    <textarea id="edit-topics-learned" rows="3" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="edit-blockers">Blockers</label>
+                    <input type="text" id="edit-blockers">
+                </div>
+
+                <div class="form-group">
+                    <label for="edit-next-day-plan">Next Day Plan</label>
+                    <input type="text" id="edit-next-day-plan" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="edit-completion-percentage">Completion Percentage (%)</label>
+                    <input type="number" id="edit-completion-percentage" min="0" max="100" required>
+                </div>
+
+                <div id="modal-status-message" class="message"></div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="closeEditModal()">Cancel</button>
+                    <button type="submit" class="btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Candidate Edit Modal -->
+    <div id="candidate-edit-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Edit Candidate</h3>
+                <button class="close-modal-btn" onclick="closeCandidateEditModal()">&times;</button>
+            </div>
+            
+            <form id="candidate-edit-form">
+                <input type="hidden" id="edit-candidate-id">
+
+                <div class="form-group">
+                    <label for="edit-candidate-name">Full Name</label>
+                    <input type="text" id="edit-candidate-name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="edit-candidate-email">Email</label>
+                    <input type="email" id="edit-candidate-email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="edit-training-track">Training Track</label>
+                    <input type="text" id="edit-training-track" required>
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="edit-candidate-active"> Notice
+                    </label>
+                </div>
+
+                <div id="modal-candidate-message" class="message"></div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="closeCandidateEditModal()">Cancel</button>
+                    <button type="submit" class="btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+</main>
+
+
+<script src="app.js"></script>
+
+</body>
+</html>

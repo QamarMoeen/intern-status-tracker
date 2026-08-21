@@ -1,7 +1,10 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 from . import models
 from .candidates import router as candidate_router
+from .statuses import router as status_router
+from .dashboard import router as dashboard_router
 from .database import Base, engine
 
 
@@ -15,8 +18,17 @@ app = FastAPI(
 )
 
 
-app.include_router(candidate_router)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
+app.include_router(candidate_router)
+app.include_router(status_router)
+app.include_router(dashboard_router)
 
 @app.get("/")
 def root():

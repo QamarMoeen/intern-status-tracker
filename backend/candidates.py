@@ -1,8 +1,6 @@
-from fastapi import APIRouter, Depends, HTTPException
-from sqlalchemy.orm import Session
-from typing import Annotated
+from fastapi import APIRouter, HTTPException
 
-from .database import get_db
+from .database import db_dependency
 from .models import Candidate
 from .schemas import CandidateCreate, CandidateUpdate, CandidateResponse
 
@@ -12,7 +10,6 @@ router = APIRouter(
     tags=["Candidates"]
 )
 
-db_dependency = Annotated[Session, Depends(get_db)]
 
 @router.post("/", response_model=CandidateResponse, status_code=201)
 def create_candidate(candidate_data: CandidateCreate, db: db_dependency):
