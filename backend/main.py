@@ -1,11 +1,11 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from . import models
-from .candidates import router as candidate_router
-from .statuses import router as status_router
-from .dashboard import router as dashboard_router
-from .database import Base, engine
+import models
+from candidates import router as candidate_router
+from statuses import router as status_router
+from dashboard import router as dashboard_router
+from database import Base, engine
 
 
 Base.metadata.create_all(bind=engine)

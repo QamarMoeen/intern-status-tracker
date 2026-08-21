@@ -3,9 +3,9 @@ from datetime import date
 from fastapi import APIRouter, HTTPException
 from sqlalchemy.exc import IntegrityError
 
-from .database import db_dependency
-from .models import Candidate, DailyStatus
-from .schemas import (
+from database import db_dependency
+from models import Candidate, DailyStatus
+from schemas import (
     DailyStatusCreate,
     DailyStatusResponse,
     DailyStatusUpdate

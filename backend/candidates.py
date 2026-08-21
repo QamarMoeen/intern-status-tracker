@@ -1,8 +1,8 @@
 from fastapi import APIRouter, HTTPException
 
-from .database import db_dependency
-from .models import Candidate
-from .schemas import CandidateCreate, CandidateUpdate, CandidateResponse
+from database import db_dependency
+from models import Candidate
+from schemas import CandidateCreate, CandidateUpdate, CandidateResponse
 
 
 router = APIRouter(

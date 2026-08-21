@@ -4,8 +4,8 @@ from fastapi import APIRouter, Depends, Query
 from sqlalchemy import func
 from sqlalchemy.orm import Session
 
-from .database import get_db
-from .models import Candidate, DailyStatus
+from database import get_db
+from models import Candidate, DailyStatus
 
 
 router = APIRouter(
