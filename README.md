@@ -57,7 +57,7 @@ The system provides:
 ---
 
 ## Project Structure
-
+```text
 intern-status-tracker/
 │
 ├── backend/
@@ -92,7 +92,7 @@ intern-status-tracker/
 ├── .gitignore
 ├── docker-compose.yml
 └── README.md
-
+```
 
 ---
 
