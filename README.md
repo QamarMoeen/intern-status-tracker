@@ -552,23 +552,21 @@ The tests should use a separate test database so that test data does not affect 
 
 # Screenshots
 
-Screenshots of the completed application can be added below.
-
 ## Dashboard
 
-Add a screenshot of the dashboard here.
+![App Dashboard Layout](assets/dashboard.png)
 
 ## Candidate Management
 
-Add a screenshot of the candidate management section here.
+![Candidate Management Layout](assets/candidates.png)
 
 ## Daily Status Management
 
-Add a screenshot of the daily status form here.
+![Status Submission Layout](assets/submitStatus.png)
 
 ## Status History
 
-Add a screenshot of the status history and filtering section here.
+![Status History Layout](assets/statusHistory.png)
 
 ---
 
