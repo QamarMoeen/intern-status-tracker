@@ -1,3 +1,10 @@
+import os
+from dotenv import load_dotenv
+
+load_dotenv(".env.test")
+
+DATABASE_URL = os.getenv("DATABASE_URL")
+
 import pytest
 
 from database import SessionLocal
