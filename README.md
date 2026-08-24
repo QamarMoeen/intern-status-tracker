@@ -1,3 +1,4 @@
+
 # Intern Status Tracker
 
 A full-stack web application for tracking interns' daily work status, progress, blockers, and next-day plans. The application allows users to manage candidates, submit and manage daily status reports, and view a dashboard showing submitted and missing statuses.
@@ -57,6 +58,7 @@ The system provides:
 ---
 
 ## Project Structure
+
 ```text
 intern-status-tracker/
 │
@@ -100,6 +102,7 @@ intern-status-tracker/
 
 The application follows a three-service architecture using Docker Compose.
 
+```text
                     ┌─────────────────┐
                     │    Frontend     │
                     │   HTML / CSS    │
@@ -126,7 +129,7 @@ The application follows a three-service architecture using Docker Compose.
                     │   PostgreSQL    │
                     │    Database     │
                     └─────────────────┘
-
+```
 
 The frontend communicates with FastAPI using JavaScript's `fetch()` API.
 
@@ -174,20 +177,25 @@ The application contains two main tables:
 
 Each candidate can have multiple daily status records.
 
+```text
 Candidate
     │
     └── 1 : Many ── DailyStatus
+```
 
 A foreign key connects:
 
+```text
 daily_statuses.candidate_id
         ↓
 candidates.id
-
+```
 
 A unique constraint is applied to:
 
+```text
 candidate_id + status_date
+```
 
 This prevents a candidate from submitting more than one status for the same date.
 
@@ -273,25 +281,33 @@ Candidates who have not submitted a status for the selected date are clearly hig
 
 ### Create Candidate
 
+```text
 POST /api/candidates/
+```
 
 ### Get All Candidates
 
+```text
 GET /api/candidates/
+```
 
 ### Get Candidate
 
+```text
 GET /api/candidates/{id}
+```
 
 ### Update Candidate
 
+```text
 PUT /api/candidates/{id}
-
+```
 
 ### Delete Candidate
 
+```text
 DELETE /api/candidates/{id}
-
+```
 
 ---
 
@@ -299,39 +315,48 @@ DELETE /api/candidates/{id}
 
 ### Create Status
 
+```text
 POST /api/statuses/
+```
 
 ### Get Statuses
 
+```text
 GET /api/statuses/
+```
 
 Supported filters:
 
+```text
 candidate_id
 status_date
 date_from
 date_to
-
+```
 
 Example:
 
+```text
 GET /api/statuses/?candidate_id=1
-
+```
 
 ### Get Status
 
+```text
 GET /api/statuses/{id}
-
+```
 
 ### Update Status
 
+```text
 PUT /api/statuses/{id}
-
+```
 
 ### Delete Status
 
+```text
 DELETE /api/statuses/{id}
-
+```
 
 ---
 
@@ -339,14 +364,15 @@ DELETE /api/statuses/{id}
 
 ### Dashboard Summary
 
+```text
 GET /api/dashboard/summary?date=YYYY-MM-DD
-
+```
 
 Example:
 
-
+```text
 GET /api/dashboard/summary?date=2026-08-24
-
+```
 
 The response contains:
 
@@ -390,11 +416,11 @@ The API also handles common errors.
 
 The application uses Docker Compose to run three services:
 
-
+```text
 backend
 frontend
 db
-
+```
 
 ### Backend
 
@@ -458,21 +484,21 @@ After the containers start:
 
 Frontend:
 
-
+```text
 http://localhost
-
+```
 
 Backend:
 
-
+```text
 http://localhost:8000
-
+```
 
 FastAPI Swagger documentation:
 
-
+```text
 http://localhost:8000/docs
-
+```
 
 ---
 
@@ -526,21 +552,23 @@ The tests should use a separate test database so that test data does not affect 
 
 # Screenshots
 
+Screenshots of the completed application can be added below.
+
 ## Dashboard
 
-![App Dashboard Layout](assets/dashboard.png)
+Add a screenshot of the dashboard here.
 
 ## Candidate Management
 
-![Candidate Management Layout](assets/candidates.png)
+Add a screenshot of the candidate management section here.
 
 ## Daily Status Management
 
-![Status Submission Layout](assets/submitStatus.png)
+Add a screenshot of the daily status form here.
 
 ## Status History
 
-![Status History Layout](assets/statusHistory.png)
+Add a screenshot of the status history and filtering section here.
 
 ---
 
